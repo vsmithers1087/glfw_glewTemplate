@@ -50,8 +50,8 @@
 		0BB4B1E81D8E081400639F5D = {
 			isa = PBXGroup;
 			children = (
-				0BB4B1FF1D8E088800639F5D /* libGLEW.2.0.0.dylib */,
 				0BB4B1FD1D8E086E00639F5D /* OpenGL.framework */,
+				0BB4B1FF1D8E088800639F5D /* libGLEW.2.0.0.dylib */,
 				0BB4B1FB1D8E086800639F5D /* libglfw3.3.2.dylib */,
 				0BB4B1F31D8E081400639F5D /* xxx */,
 				0BB4B1F21D8E081400639F5D /* Products */,
@@ -262,6 +262,7 @@
 				0BB4B1FA1D8E081400639F5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

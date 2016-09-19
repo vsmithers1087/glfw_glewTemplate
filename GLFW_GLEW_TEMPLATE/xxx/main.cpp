@@ -7,50 +7,74 @@
 //
 
 #include <iostream>
+#define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 
-void render(void){
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    glBegin(GL_TRIANGLES);{
-        glColor3f(1, 0, 0);
-        glVertex2f(0, 0.5);
-        glColor3f(0, 1, 0);
-        glVertex2f(-0.5, -0.5);
-        glColor3f(0, 0, 1);
-        glVertex2f(0.5, -0.5);
-    }
-    
-    glEnd();
-}
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
-int main(int argc, const char * argv[]) {
 
-    GLFWwindow *window;
+int main() {
+    std::cout << "Starting GLFW context" << std::endl;
+    
+    //glew init
+    
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
     
     if (!glfwInit()) {
+        std::cout<< "Couldn't init glfw" << std::endl;
         exit(1);
     }
+
+    //create window
     
-    window = glfwCreateWindow(900, 640.0, "Test", NULL, NULL);
+    GLFWwindow *window;
+    glewExperimental = GL_TRUE;
+    
+    window = glfwCreateWindow(900, 640.0, "Test_Window", NULL, NULL);
     
     if (!window) {
+        std::cout<< "Couldn't create window" << std::endl;
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
     
+    glfwSetKeyCallback(window, key_callback);
+    
+    //set viewport.
+    
     glfwMakeContextCurrent(window);
     
+    int width, height;
+    
+    glfwGetFramebufferSize(window, &width, &height);
+    glViewport(0, 0, width, height);
+    
     while (!glfwWindowShouldClose(window)) {
-        render();
-        glfwSwapBuffers(window);
         glfwPollEvents();
+        
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        glfwSwapBuffers(window);
     }
+    
     glfwTerminate();
-    exit(EXIT_SUCCESS);
     
     return 0;
 }
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode){
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, true);
+    }
+}
+
+
