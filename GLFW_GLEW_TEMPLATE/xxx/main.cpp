@@ -62,7 +62,7 @@ int main() {
 
     //MARK: our shader
     
-    Shader ourShader("/Users/VinceentSmithers/Desktop/Job/Post401/glfw_glew_template/GLFW_GLEW_TEMPLATE/xxx/VertexShader.vs", "/Users/VinceentSmithers/Desktop/Job/Post401/glfw_glew_template/GLFW_GLEW_TEMPLATE/xxx/FramgentShader.frag");
+    Shader ourShader("VertexShader.vs", "FragmentShader.fr");
     
     //MARK: vertices
     GLfloat vertices[] = {

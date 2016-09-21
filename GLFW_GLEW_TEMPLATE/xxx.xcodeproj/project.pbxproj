@@ -33,6 +33,7 @@
 		0BB4B1FF1D8E088800639F5D /* libGLEW.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.0.0.dylib; path = ../../../../usr/local/Cellar/glew/2.0.0/lib/libGLEW.2.0.0.dylib; sourceTree = "<group>"; };
 		0BE087A61D932B7C0045949F /* ShaderXXX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderXXX.h; sourceTree = "<group>"; };
 		0BE087A71D932BB80045949F /* VertexShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VertexShader.vs; sourceTree = "<group>"; };
+		0BE6C0DB1D933099005332C0 /* FragmentShader.fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FragmentShader.fr; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 				0BB4B1F41D8E081400639F5D /* main.cpp */,
 				0BE087A61D932B7C0045949F /* ShaderXXX.h */,
 				0BE087A71D932BB80045949F /* VertexShader.vs */,
+				0BE6C0DB1D933099005332C0 /* FragmentShader.fr */,
 			);
 			path = xxx;
 			sourceTree = "<group>";
