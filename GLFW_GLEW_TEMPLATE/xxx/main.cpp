@@ -10,6 +10,7 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <math.h>
 
 //MARK: key callback declaration
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
@@ -19,17 +20,21 @@ const GLuint WIDTH = 800, HEIGHT = 600;
 //MARK: vertex shader c string
 const GLchar* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 position;\n"
+"layout (location = 1) in vec3 color;\n"
+"out vec3 ourColor;\n"
 "void main()\n"
 "{\n"
-"gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
+"gl_Position = vec4(position, 1.0);\n"
+"ourColor = color;\n"
 "}\0";
 
 //MARK: fragment shader c string
 const GLchar* fragmentShaderSource = "#version 330 core\n"
+"in vec3 ourColor;\n"
 "out vec4 color;\n"
 "void main()\n"
 "{\n"
-"color = vec4(0.2f, 0.1f, 0.8f, 1.0f);\n"
+"color = vec4(ourColor, 1.0f);\n"
 "}\n\0";
 
 //MARK: main
@@ -89,7 +94,7 @@ int main() {
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
- 
+    
     //MARK: check shader success
     
     GLint success;
@@ -106,38 +111,34 @@ int main() {
     
     //MARK: vertices
     GLfloat vertices[] = {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.0f, 0.5f, 0.0f
+        -0.5f, -0.5f, 0.0f, 1.0f, 0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,
+        0.0f, 0.5f, 0.0f,   0.5f, 0.5f, 1.0f
     };
 
-    //MARK: indices
-    GLuint indices[] = {  // Note that we start from 0!
-        0, 1, 3,  // First Triangle
-        1, 2, 3   // Second Triangle
-    };
+
     
     //MARK: linking vertex attributes
-    GLuint VAO, VBO, EBO;
+    GLuint VAO, VBO;
     
     //MARK: bind vertex array object then bind and set vertex buffers and attribute pointers
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-    
+
     glBindVertexArray(VAO);
-    
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0);
+    //MARK: position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GL_FLOAT), (GLvoid*)0);
     glEnableVertexAttribArray(0);
     
+    //MARK: color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GL_FLOAT), (GLvoid*)(3* sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
+
     //MARK: undbind array buffers
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
     glBindVertexArray(0);
     
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -148,13 +149,21 @@ int main() {
         glfwPollEvents();
         
         //MARK: render
-        glClearColor(0.2f, 0.9f, 0.3f, 1.0f);
+        glClearColor(0.2f, 0.1f, 0.3f, 1.0f);
         
         //MARK: clear color buffer
         glClear(GL_COLOR_BUFFER_BIT);
         
-        //MARK: draw triangle
+        //MARK: change color over time
         glUseProgram(shaderProgram);
+        
+       /* GLfloat timeValue = glfwGetTime();
+        GLfloat greenValue = (sin(timeValue / 2)) + 0.5;
+        GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+    */
+        
+        //MARK: draw triangle
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindVertexArray(0);
@@ -165,7 +174,7 @@ int main() {
     //MARK: deallocate once loop exits
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);
+
     
     //MARK: terminate glfw
     glfwTerminate();
