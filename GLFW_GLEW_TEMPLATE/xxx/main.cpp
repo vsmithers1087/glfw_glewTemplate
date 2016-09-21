@@ -11,31 +11,12 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
+#include "ShaderXXX.h"
 
 //MARK: key callback declaration
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
 const GLuint WIDTH = 800, HEIGHT = 600;
-
-//MARK: vertex shader c string
-const GLchar* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 position;\n"
-"layout (location = 1) in vec3 color;\n"
-"out vec3 ourColor;\n"
-"void main()\n"
-"{\n"
-"gl_Position = vec4(position, 1.0);\n"
-"ourColor = color;\n"
-"}\0";
-
-//MARK: fragment shader c string
-const GLchar* fragmentShaderSource = "#version 330 core\n"
-"in vec3 ourColor;\n"
-"out vec4 color;\n"
-"void main()\n"
-"{\n"
-"color = vec4(ourColor, 1.0f);\n"
-"}\n\0";
 
 //MARK: main
 int main() {
@@ -78,36 +59,10 @@ int main() {
     int width, height;
     glfwGetFramebufferSize(window, &width, &height);
     glViewport(0, 0, width, height);
+
+    //MARK: our shader
     
-    //MARK: vertex shader
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
-    
-    //MARK: fragment shader
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
-    
-    //MARK: shader program
-    GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-    
-    //MARK: check shader success
-    
-    GLint success;
-    GLchar infoLog[512];
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    
-    if(!success)
-    {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
+    Shader ourShader("/Users/VinceentSmithers/Desktop/Job/Post401/glfw_glew_template/GLFW_GLEW_TEMPLATE/xxx/VertexShader.vs", "/Users/VinceentSmithers/Desktop/Job/Post401/glfw_glew_template/GLFW_GLEW_TEMPLATE/xxx/FramgentShader.frag");
     
     //MARK: vertices
     GLfloat vertices[] = {
@@ -115,7 +70,6 @@ int main() {
         0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,
         0.0f, 0.5f, 0.0f,   0.5f, 0.5f, 1.0f
     };
-
 
     
     //MARK: linking vertex attributes
@@ -154,9 +108,10 @@ int main() {
         //MARK: clear color buffer
         glClear(GL_COLOR_BUFFER_BIT);
         
+        ourShader.Use();
         //MARK: change color over time
-        glUseProgram(shaderProgram);
         
+        //Change Color overtime
        /* GLfloat timeValue = glfwGetTime();
         GLfloat greenValue = (sin(timeValue / 2)) + 0.5;
         GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
@@ -164,6 +119,7 @@ int main() {
     */
         
         //MARK: draw triangle
+        ourShader.Use();
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindVertexArray(0);
