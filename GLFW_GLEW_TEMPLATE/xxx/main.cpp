@@ -11,7 +11,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
-#include "SOIL.h"
 #include "ShaderXXX.h"
 
 
@@ -89,17 +88,17 @@ int main() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int imageWidth, imageHeight;
-    unsigned char* image = SOIL_load_image("turtlesX.png", &imageWidth, &imageHeight, 0, SOIL_LOAD_RGB);
+//    unsigned char* image = SOIL_load_image("turtlesX.png", &imageWidth, &imageHeight, 0, SOIL_LOAD_RGB);
     
     GLuint texture;
     glGenTextures(1, &texture);
     
     glBindTexture(GL_TEXTURE_2D, texture);
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RG8, imageWidth, imageHeight, 0, GL_RG8, GL_UNSIGNED_BYTE, image);
+//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RG8, imageWidth, imageHeight, 0, GL_RG8, GL_UNSIGNED_BYTE, image);
     glGenerateMipmap(GL_TEXTURE_2D);
     
-    SOIL_free_image_data(image);
+//    SOIL_free_image_data(image);
     glBindTexture(GL_TEXTURE_2D, 0);
     
     //MARK: linking vertex attributes

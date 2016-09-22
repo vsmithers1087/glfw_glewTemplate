@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B4696CC1D9448CE00979F96 /* image_DXT.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B4696C71D9448CE00979F96 /* image_DXT.c */; };
-		0B4696CD1D9448CE00979F96 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B4696C81D9448CE00979F96 /* image_helper.c */; };
-		0B4696CE1D9448CE00979F96 /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B4696C91D9448CE00979F96 /* SOIL.c */; };
-		0B4696CF1D9448CE00979F96 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B4696CA1D9448CE00979F96 /* stb_image_aug.c */; };
-		0B4696D01D9448CE00979F96 /* stbi_DDS_aug_c.h in Sources */ = {isa = PBXBuildFile; fileRef = 0B4696CB1D9448CE00979F96 /* stbi_DDS_aug_c.h */; };
+		0B46972D1D948CDA00979F96 /* image_DXT.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B4697291D948CDA00979F96 /* image_DXT.c */; };
+		0B46972E1D948CDA00979F96 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B46972A1D948CDA00979F96 /* image_helper.c */; };
+		0B46972F1D948CDA00979F96 /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B46972B1D948CDA00979F96 /* SOIL.c */; };
+		0B4697301D948CDA00979F96 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B46972C1D948CDA00979F96 /* stb_image_aug.c */; };
 		0BB4B1F51D8E081400639F5D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BB4B1F41D8E081400639F5D /* main.cpp */; };
 		0BB4B1FC1D8E086800639F5D /* libglfw3.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB4B1FB1D8E086800639F5D /* libglfw3.3.2.dylib */; };
 		0BB4B1FE1D8E086E00639F5D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB4B1FD1D8E086E00639F5D /* OpenGL.framework */; };
@@ -36,22 +35,12 @@
 		0B4696A31D943D3400979F96 /* SOIL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = ../../../../../../../usr/local/Cellar/soil/src/SOIL.h; sourceTree = "<group>"; };
 		0B4696A61D943DEC00979F96 /* turtlesX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = turtlesX.png; path = images/turtlesX.png; sourceTree = "<group>"; };
 		0B4696AB1D94462100979F96 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		0B4696AE1D9446AF00979F96 /* SOIL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = SOIL.c; path = /usr/local/Cellar/soil/src/SOIL.c; sourceTree = "<absolute>"; };
-		0B4696B11D9446E500979F96 /* image_DXT.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_DXT.c; path = /usr/local/Cellar/soil/src/image_DXT.c; sourceTree = "<absolute>"; };
-		0B4696B21D9446E500979F96 /* image_DXT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = image_DXT.h; path = /usr/local/Cellar/soil/src/image_DXT.h; sourceTree = "<absolute>"; };
-		0B4696B31D9446E500979F96 /* image_helper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = /usr/local/Cellar/soil/src/image_helper.c; sourceTree = "<absolute>"; };
-		0B4696B41D9446E500979F96 /* image_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = image_helper.h; path = /usr/local/Cellar/soil/src/image_helper.h; sourceTree = "<absolute>"; };
-		0B4696B51D9446E500979F96 /* SOIL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = /usr/local/Cellar/soil/src/SOIL.h; sourceTree = "<absolute>"; };
-		0B4696B61D9446E500979F96 /* stb_image_aug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = /usr/local/Cellar/soil/src/stb_image_aug.c; sourceTree = "<absolute>"; };
-		0B4696B71D9446E500979F96 /* stb_image_aug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stb_image_aug.h; path = /usr/local/Cellar/soil/src/stb_image_aug.h; sourceTree = "<absolute>"; };
-		0B4696B81D9446E500979F96 /* stbi_DDS_aug_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug_c.h; path = /usr/local/Cellar/soil/src/stbi_DDS_aug_c.h; sourceTree = "<absolute>"; };
-		0B4696B91D9446E500979F96 /* stbi_DDS_aug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug.h; path = /usr/local/Cellar/soil/src/stbi_DDS_aug.h; sourceTree = "<absolute>"; };
-		0B4696BA1D9446E500979F96 /* test_SOIL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = test_SOIL.cpp; path = /usr/local/Cellar/soil/src/test_SOIL.cpp; sourceTree = "<absolute>"; };
-		0B4696C71D9448CE00979F96 /* image_DXT.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_DXT.c; path = /usr/local/Cellar/soil/src/image_DXT.c; sourceTree = "<absolute>"; };
-		0B4696C81D9448CE00979F96 /* image_helper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = /usr/local/Cellar/soil/src/image_helper.c; sourceTree = "<absolute>"; };
-		0B4696C91D9448CE00979F96 /* SOIL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = SOIL.c; path = /usr/local/Cellar/soil/src/SOIL.c; sourceTree = "<absolute>"; };
-		0B4696CA1D9448CE00979F96 /* stb_image_aug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = /usr/local/Cellar/soil/src/stb_image_aug.c; sourceTree = "<absolute>"; };
-		0B4696CB1D9448CE00979F96 /* stbi_DDS_aug_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug_c.h; path = /usr/local/Cellar/soil/src/stbi_DDS_aug_c.h; sourceTree = "<absolute>"; };
+		0B4697231D94885800979F96 /* libSOILXX.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSOILXX.dylib; path = "../../../../../Library/Developer/Xcode/DerivedData/SOILXX-bdkfaqiktrfprkcreuqgmrbwqnmd/Build/Products/Debug/libSOILXX.dylib"; sourceTree = "<group>"; };
+		0B4697251D94892A00979F96 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glfw3.h; path = ../../../../../../../usr/local/Cellar/glfw3/3.2.1/include/GLFW/glfw3.h; sourceTree = "<group>"; };
+		0B4697291D948CDA00979F96 /* image_DXT.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_DXT.c; path = ../../../../../../../usr/local/Cellar/soilX/libSOIL/image_DXT.c; sourceTree = "<group>"; };
+		0B46972A1D948CDA00979F96 /* image_helper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = ../../../../../../../usr/local/Cellar/soilX/libSOIL/image_helper.c; sourceTree = "<group>"; };
+		0B46972B1D948CDA00979F96 /* SOIL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = SOIL.c; path = ../../../../../../../usr/local/Cellar/soilX/libSOIL/SOIL.c; sourceTree = "<group>"; };
+		0B46972C1D948CDA00979F96 /* stb_image_aug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = ../../../../../../../usr/local/Cellar/soilX/libSOIL/stb_image_aug.c; sourceTree = "<group>"; };
 		0BB4B1F11D8E081400639F5D /* xxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xxx; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BB4B1F41D8E081400639F5D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0BB4B1FB1D8E086800639F5D /* libglfw3.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.2.dylib; path = ../../../../usr/local/Cellar/glfw3/3.2.1/lib/libglfw3.3.2.dylib; sourceTree = "<group>"; };
@@ -79,6 +68,8 @@
 		0B46969E1D943AA500979F96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B4697251D94892A00979F96 /* glfw3.h */,
+				0B4697231D94885800979F96 /* libSOILXX.dylib */,
 				0B4696AB1D94462100979F96 /* CoreFoundation.framework */,
 				0B4696A31D943D3400979F96 /* SOIL.h */,
 				0B4696A11D943B5700979F96 /* libSOIL.a */,
@@ -96,33 +87,13 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		0B4696D11D94492D00979F96 /* SOIL */ = {
-			isa = PBXGroup;
-			children = (
-				0B4696C71D9448CE00979F96 /* image_DXT.c */,
-				0B4696C81D9448CE00979F96 /* image_helper.c */,
-				0B4696C91D9448CE00979F96 /* SOIL.c */,
-				0B4696CA1D9448CE00979F96 /* stb_image_aug.c */,
-				0B4696CB1D9448CE00979F96 /* stbi_DDS_aug_c.h */,
-				0B4696B11D9446E500979F96 /* image_DXT.c */,
-				0B4696B21D9446E500979F96 /* image_DXT.h */,
-				0B4696B31D9446E500979F96 /* image_helper.c */,
-				0B4696B41D9446E500979F96 /* image_helper.h */,
-				0B4696B51D9446E500979F96 /* SOIL.h */,
-				0B4696B61D9446E500979F96 /* stb_image_aug.c */,
-				0B4696B71D9446E500979F96 /* stb_image_aug.h */,
-				0B4696B81D9446E500979F96 /* stbi_DDS_aug_c.h */,
-				0B4696B91D9446E500979F96 /* stbi_DDS_aug.h */,
-				0B4696BA1D9446E500979F96 /* test_SOIL.cpp */,
-				0B4696AE1D9446AF00979F96 /* SOIL.c */,
-			);
-			name = SOIL;
-			sourceTree = "<group>";
-		};
 		0BB4B1E81D8E081400639F5D = {
 			isa = PBXGroup;
 			children = (
-				0B4696D11D94492D00979F96 /* SOIL */,
+				0B4697291D948CDA00979F96 /* image_DXT.c */,
+				0B46972A1D948CDA00979F96 /* image_helper.c */,
+				0B46972B1D948CDA00979F96 /* SOIL.c */,
+				0B46972C1D948CDA00979F96 /* stb_image_aug.c */,
 				0BB4B1FD1D8E086E00639F5D /* OpenGL.framework */,
 				0BB4B1FF1D8E088800639F5D /* libGLEW.2.0.0.dylib */,
 				0BB4B1FB1D8E086800639F5D /* libglfw3.3.2.dylib */,
@@ -208,11 +179,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B4696CC1D9448CE00979F96 /* image_DXT.c in Sources */,
-				0B4696CD1D9448CE00979F96 /* image_helper.c in Sources */,
-				0B4696CE1D9448CE00979F96 /* SOIL.c in Sources */,
-				0B4696CF1D9448CE00979F96 /* stb_image_aug.c in Sources */,
-				0B4696D01D9448CE00979F96 /* stbi_DDS_aug_c.h in Sources */,
+				0B46972D1D948CDA00979F96 /* image_DXT.c in Sources */,
+				0B46972E1D948CDA00979F96 /* image_helper.c in Sources */,
+				0B46972F1D948CDA00979F96 /* SOIL.c in Sources */,
+				0B4697301D948CDA00979F96 /* stb_image_aug.c in Sources */,
 				0BB4B1F51D8E081400639F5D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,13 +278,12 @@
 		0BB4B1F91D8E081400639F5D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glfw3/3.2.1/lib,
 					/usr/local/Cellar/glew/2.0.0/lib,
-					/usr/local/soil/lib,
-					/usr/local/Cellar/soil/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -323,12 +292,11 @@
 		0BB4B1FA1D8E081400639F5D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glfw3/3.2.1/lib,
 					/usr/local/Cellar/glew/2.0.0/lib,
-					/usr/local/soil/lib,
-					/usr/local/Cellar/soil/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
