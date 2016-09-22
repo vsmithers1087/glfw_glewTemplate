@@ -11,7 +11,9 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
+#include "SOIL.h"
 #include "ShaderXXX.h"
+
 
 //MARK: key callback declaration
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
@@ -66,11 +68,39 @@ int main() {
     
     //MARK: vertices
     GLfloat vertices[] = {
-        -0.5f, -0.5f, 0.0f, 1.0f, 0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,
-        0.0f, 0.5f, 0.0f,   0.5f, 0.5f, 1.0f
+        // Positions          // Colors           // Texture Coords
+        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // Top Right
+        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // Bottom Right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // Bottom Left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // Top Left
     };
+    
+  
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+    
+    float borderColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+    int imageWidth, imageHeight;
+    unsigned char* image = SOIL_load_image("turtlesX.png", &imageWidth, &imageHeight, 0, SOIL_LOAD_RGB);
+    
+    GLuint texture;
+    glGenTextures(1, &texture);
+    
+    glBindTexture(GL_TEXTURE_2D, texture);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RG8, imageWidth, imageHeight, 0, GL_RG8, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    
+    SOIL_free_image_data(image);
+    glBindTexture(GL_TEXTURE_2D, 0);
     
     //MARK: linking vertex attributes
     GLuint VAO, VBO;
@@ -83,13 +113,21 @@ int main() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    
     //MARK: position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GL_FLOAT), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLvoid*)0);
     glEnableVertexAttribArray(0);
     
     //MARK: color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GL_FLOAT), (GLvoid*)(3* sizeof(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLvoid*)(3* sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
+    
+    glVertexAttribPointer(2, 2, GL_FLOAT,GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(2);
 
     //MARK: undbind array buffers
     
@@ -109,14 +147,6 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
         
         ourShader.Use();
-        //MARK: change color over time
-        
-        //Change Color overtime
-       /* GLfloat timeValue = glfwGetTime();
-        GLfloat greenValue = (sin(timeValue / 2)) + 0.5;
-        GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-    */
         
         //MARK: draw triangle
         ourShader.Use();
