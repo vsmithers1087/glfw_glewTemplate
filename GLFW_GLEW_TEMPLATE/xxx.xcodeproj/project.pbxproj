@@ -37,10 +37,11 @@
 		0B4696AB1D94462100979F96 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0B4697231D94885800979F96 /* libSOILXX.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSOILXX.dylib; path = "../../../../../Library/Developer/Xcode/DerivedData/SOILXX-bdkfaqiktrfprkcreuqgmrbwqnmd/Build/Products/Debug/libSOILXX.dylib"; sourceTree = "<group>"; };
 		0B4697251D94892A00979F96 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glfw3.h; path = ../../../../../../../usr/local/Cellar/glfw3/3.2.1/include/GLFW/glfw3.h; sourceTree = "<group>"; };
-		0B4697291D948CDA00979F96 /* image_DXT.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_DXT.c; path = ../../../../../../../usr/local/Cellar/soilX/libSOIL/image_DXT.c; sourceTree = "<group>"; };
-		0B46972A1D948CDA00979F96 /* image_helper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = ../../../../../../../usr/local/Cellar/soilX/libSOIL/image_helper.c; sourceTree = "<group>"; };
-		0B46972B1D948CDA00979F96 /* SOIL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = SOIL.c; path = ../../../../../../../usr/local/Cellar/soilX/libSOIL/SOIL.c; sourceTree = "<group>"; };
-		0B46972C1D948CDA00979F96 /* stb_image_aug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = ../../../../../../../usr/local/Cellar/soilX/libSOIL/stb_image_aug.c; sourceTree = "<group>"; };
+		0B4697291D948CDA00979F96 /* image_DXT.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_DXT.c; path = /usr/local/Cellar/soilX/libSOIL/image_DXT.c; sourceTree = "<absolute>"; };
+		0B46972A1D948CDA00979F96 /* image_helper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = /usr/local/Cellar/soilX/libSOIL/image_helper.c; sourceTree = "<absolute>"; };
+		0B46972B1D948CDA00979F96 /* SOIL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = SOIL.c; path = /usr/local/Cellar/soilX/libSOIL/SOIL.c; sourceTree = "<absolute>"; };
+		0B46972C1D948CDA00979F96 /* stb_image_aug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = /usr/local/Cellar/soilX/libSOIL/stb_image_aug.c; sourceTree = "<absolute>"; };
+		0B4697321D948EB900979F96 /* SOIL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = /usr/local/Cellar/soilX/libSOIL/SOIL.h; sourceTree = "<absolute>"; };
 		0BB4B1F11D8E081400639F5D /* xxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xxx; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BB4B1F41D8E081400639F5D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0BB4B1FB1D8E086800639F5D /* libglfw3.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.2.dylib; path = ../../../../usr/local/Cellar/glfw3/3.2.1/lib/libglfw3.3.2.dylib; sourceTree = "<group>"; };
@@ -87,13 +88,22 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		0BB4B1E81D8E081400639F5D = {
+		0B4697311D948E5C00979F96 /* SOIL */ = {
 			isa = PBXGroup;
 			children = (
+				0B4697321D948EB900979F96 /* SOIL.h */,
 				0B4697291D948CDA00979F96 /* image_DXT.c */,
 				0B46972A1D948CDA00979F96 /* image_helper.c */,
 				0B46972B1D948CDA00979F96 /* SOIL.c */,
 				0B46972C1D948CDA00979F96 /* stb_image_aug.c */,
+			);
+			name = SOIL;
+			sourceTree = "<group>";
+		};
+		0BB4B1E81D8E081400639F5D = {
+			isa = PBXGroup;
+			children = (
+				0B4697311D948E5C00979F96 /* SOIL */,
 				0BB4B1FD1D8E086E00639F5D /* OpenGL.framework */,
 				0BB4B1FF1D8E088800639F5D /* libGLEW.2.0.0.dylib */,
 				0BB4B1FB1D8E086800639F5D /* libglfw3.3.2.dylib */,
