@@ -33,7 +33,6 @@
 		0B46969F1D943AA500979F96 /* libSOIL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSOIL.a; path = ../../../../../../../usr/local/soil/lib/libSOIL.a; sourceTree = "<group>"; };
 		0B4696A11D943B5700979F96 /* libSOIL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSOIL.a; path = ../../../../../../../usr/local/Cellar/soil/lib/libSOIL.a; sourceTree = "<group>"; };
 		0B4696A31D943D3400979F96 /* SOIL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = ../../../../../../../usr/local/Cellar/soil/src/SOIL.h; sourceTree = "<group>"; };
-		0B4696A61D943DEC00979F96 /* turtlesX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = turtlesX.png; path = images/turtlesX.png; sourceTree = "<group>"; };
 		0B4696AB1D94462100979F96 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0B4697231D94885800979F96 /* libSOILXX.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSOILXX.dylib; path = "../../../../../Library/Developer/Xcode/DerivedData/SOILXX-bdkfaqiktrfprkcreuqgmrbwqnmd/Build/Products/Debug/libSOILXX.dylib"; sourceTree = "<group>"; };
 		0B4697251D94892A00979F96 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glfw3.h; path = ../../../../../../../usr/local/Cellar/glfw3/3.2.1/include/GLFW/glfw3.h; sourceTree = "<group>"; };
@@ -79,15 +78,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		0B4696A51D943DDD00979F96 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				0B4696A61D943DEC00979F96 /* turtlesX.png */,
-			);
-			name = Images;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		0B4697311D948E5C00979F96 /* SOIL */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,7 +114,6 @@
 		0BB4B1F31D8E081400639F5D /* xxx */ = {
 			isa = PBXGroup;
 			children = (
-				0B4696A51D943DDD00979F96 /* Images */,
 				0BB4B1F41D8E081400639F5D /* main.cpp */,
 				0BE087A61D932B7C0045949F /* ShaderXXX.h */,
 				0BE087A71D932BB80045949F /* VertexShader.vs */,

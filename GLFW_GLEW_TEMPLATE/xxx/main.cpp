@@ -114,50 +114,45 @@ int main() {
     glBindVertexArray(0);
     
     //MARK: Texture 1 generate and bind
-    GLuint texture;
+    GLuint texture1;
     GLuint texture2;
     
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glGenTextures(1, &texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-    
-    //MARK: Texture filters and params
+    //MARK:Set our texture parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
-    //MARK: load, create image and mipmaps
-    int imageWidth, imageHeight;
-    unsigned char* image = SOIL_load_image("turtlesX.png", &imageWidth, &imageHeight, 0, SOIL_LOAD_RGB);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RG8, imageWidth, imageHeight, 0, GL_RG8, GL_UNSIGNED_BYTE, image);
+    // MARK: load and create image texture
+    int widthX, heightX;
+    unsigned char* image = SOIL_load_image("testX.jpg", &widthX, &heightX, 0, SOIL_LOAD_RGB);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widthX, heightX, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
     glGenerateMipmap(GL_TEXTURE_2D);
     SOIL_free_image_data(image);
-    glBindTexture(GL_TEXTURE_2D, 0);
     
+    //MARK: unbind texture
+    glBindTexture(GL_TEXTURE_2D, 0);
+  
+    //MARK: texture 2
     glGenTextures(1, &texture2);
     glBindTexture(GL_TEXTURE_2D, texture2);
-    
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-    
-    //MARK: Texture filters and params
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    
-    //MARK: load, create image and mipmaps
-   
-    image = SOIL_load_image("turtlesX.png", &imageWidth, &imageHeight, 0, SOIL_LOAD_RGB);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RG8, imageWidth, imageHeight, 0, GL_RG8, GL_UNSIGNED_BYTE, image);
+
+    image = SOIL_load_image("container.jpg", &widthX, &heightX, 0, SOIL_LOAD_RGB);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widthX, heightX, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
     glGenerateMipmap(GL_TEXTURE_2D);
     SOIL_free_image_data(image);
     glBindTexture(GL_TEXTURE_2D, 0);
 
-    
-//    glBindVertexArray(0);
-    
-    
-//    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     
     //MARK: "RUNTIME LOOP"
     while (!glfwWindowShouldClose(window)) {
@@ -173,7 +168,7 @@ int main() {
         ourShader.Use();
         
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindTexture(GL_TEXTURE_2D, texture1);
         glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
