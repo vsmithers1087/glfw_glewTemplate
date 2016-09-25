@@ -69,10 +69,10 @@ int main() {
     //MARK: vertices
     GLfloat vertices[] = {
         // Positions          // Colors           // Texture Coords
-        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // Top Right
-        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // Bottom Right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // Bottom Left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // Top Left
+        1.f,  1.0f, 0.0f,   1.0f, 0.0f, 0.0f,   4.0f, 4.0f,   // Top Right
+        1.0f, -1.0f, 0.0f,   0.0f, 1.0f, 0.0f,   4.0f, -1.0f,   // Bottom Right
+        -1.0f, -1.0f, 0.0f,   0.0f, 0.0f, 1.0f,   -1.0f, 0.0f,   // Bottom Left
+        -1.0f,  1.0f, 0.0f,   1.0f, 1.0f, 0.0f,   -1.0f, 4.0f    // Top Left
     };
     
     GLuint indices[] = {  // Note that we start from 0!
@@ -121,8 +121,8 @@ int main() {
     glBindTexture(GL_TEXTURE_2D, texture1);
     
     //MARK:Set our texture parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_LINEAR );
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_LINEAR );
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
