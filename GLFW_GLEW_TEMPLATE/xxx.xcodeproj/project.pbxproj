@@ -41,6 +41,9 @@
 		0B46972B1D948CDA00979F96 /* SOIL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = SOIL.c; path = /usr/local/Cellar/soilX/libSOIL/SOIL.c; sourceTree = "<absolute>"; };
 		0B46972C1D948CDA00979F96 /* stb_image_aug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = /usr/local/Cellar/soilX/libSOIL/stb_image_aug.c; sourceTree = "<absolute>"; };
 		0B4697321D948EB900979F96 /* SOIL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = /usr/local/Cellar/soilX/libSOIL/SOIL.h; sourceTree = "<absolute>"; };
+		0B4B0F1A1D989E0D00DFC256 /* glm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = glm.hpp; path = glm/glm/glm.hpp; sourceTree = "<group>"; };
+		0B4B0F1C1D989E8900DFC256 /* matrix_transform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = matrix_transform.hpp; path = glm/glm/gtc/matrix_transform.hpp; sourceTree = "<group>"; };
+		0B4B0F1E1D989EA800DFC256 /* type_ptr.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = type_ptr.hpp; path = glm/glm/gtc/type_ptr.hpp; sourceTree = "<group>"; };
 		0BB4B1F11D8E081400639F5D /* xxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xxx; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BB4B1F41D8E081400639F5D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0BB4B1FB1D8E086800639F5D /* libglfw3.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.2.dylib; path = ../../../../usr/local/Cellar/glfw3/3.2.1/lib/libglfw3.3.2.dylib; sourceTree = "<group>"; };
@@ -90,9 +93,20 @@
 			name = SOIL;
 			sourceTree = "<group>";
 		};
+		0B4B0F201D989EBC00DFC256 /* GLM */ = {
+			isa = PBXGroup;
+			children = (
+				0B4B0F1E1D989EA800DFC256 /* type_ptr.hpp */,
+				0B4B0F1C1D989E8900DFC256 /* matrix_transform.hpp */,
+				0B4B0F1A1D989E0D00DFC256 /* glm.hpp */,
+			);
+			name = GLM;
+			sourceTree = "<group>";
+		};
 		0BB4B1E81D8E081400639F5D = {
 			isa = PBXGroup;
 			children = (
+				0B4B0F201D989EBC00DFC256 /* GLM */,
 				0B4697311D948E5C00979F96 /* SOIL */,
 				0BB4B1FD1D8E086E00639F5D /* OpenGL.framework */,
 				0BB4B1FF1D8E088800639F5D /* libGLEW.2.0.0.dylib */,

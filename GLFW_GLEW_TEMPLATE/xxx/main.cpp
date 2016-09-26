@@ -13,6 +13,9 @@
 #include <math.h>
 #include "SOIL.h"
 #include "ShaderXXX.h"
+#include "glm.hpp"
+#include "matrix_transform.hpp"
+#include "type_ptr.hpp"
 
 
 //MARK: key callback declaration
@@ -77,7 +80,8 @@ int main() {
     
     GLuint indices[] = {  // Note that we start from 0!
         0, 1, 3, // First Triangle
-        1, 2, 3  // Second Triangle
+        1, 2, 3,  // Second Triangle
+       
     };
     
     //MARK: linking vertex attributes
@@ -166,17 +170,39 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
         
         ourShader.Use();
-        
+    
+        //MARK: bind textures
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
         glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
         glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture2"), 1);
-        //MARK: draw triangle
-//        ourShader.Use();
+        
+        //MARK: transform
+        glm::mat4 transform;
+        
+        //MARK: first
+        transform = glm::rotate(transform, (GLfloat)glfwGetTime() * 5.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+        transform = glm::translate(transform, glm::vec3(0.0f, 0.0f, 0.0f));
+        GLuint transformLoc = glGetUniformLocation(ourShader.Program, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+       
+        //MARK: second
+        transform = glm::mat4();
+        transform = glm::translate(transform, glm::vec3(0.0f, 0.0f, 0.0f));
+        GLfloat floatTime = sinf(glfwGetTime());
+        transform = glm::scale(transform, glm::vec3(floatTime, floatTime, floatTime));
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        
+        //MARK: draw triangle
+//        glBindVertexArray(VAO);
+//        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        
         glBindVertexArray(0);
         
         //MARK: swap screen buffers
