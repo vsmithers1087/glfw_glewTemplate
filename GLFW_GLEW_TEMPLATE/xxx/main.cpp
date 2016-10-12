@@ -71,17 +71,16 @@ int main() {
     
     //MARK: vertices
     GLfloat vertices[] = {
-        // Positions          // Colors           // Texture Coords
-        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // Top Right
-        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // Bottom Right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // Bottom Left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // Top Left
+        // Positions          // Texture Coords
+        0.5f,  0.5f, 0.0f,      1.0f, 1.0f,   // Top Right
+        0.5f, -0.5f, 0.0f,      1.0f, 0.0f,   // Bottom Right
+        -0.5f, -0.5f, 0.0f,     0.0f, 0.0f,   // Bottom Left
+        -0.5f,  0.5f, 0.0f,     0.0f, 1.0f    // Top Left
     };
     
     GLuint indices[] = {  // Note that we start from 0!
         0, 1, 3, // First Triangle
         1, 2, 3,  // Second Triangle
-       
     };
     
     //MARK: linking vertex attributes
@@ -102,15 +101,12 @@ int main() {
     
     
     //MARK: position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GL_FLOAT), (GLvoid*)0);
     glEnableVertexAttribArray(0);
     
-    //MARK: color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLvoid*)(3* sizeof(GLfloat)));
-    glEnableVertexAttribArray(1);
     
     //MARK: texCord attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT,GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+    glVertexAttribPointer(2, 2, GL_FLOAT,GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(2);
     
     
@@ -168,8 +164,6 @@ int main() {
         
         //MARK: clear color buffer
         glClear(GL_COLOR_BUFFER_BIT);
-        
-        ourShader.Use();
     
         //MARK: bind textures
         glActiveTexture(GL_TEXTURE0);
@@ -179,30 +173,29 @@ int main() {
         glBindTexture(GL_TEXTURE_2D, texture2);
         glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture2"), 1);
         
-        //MARK: transform
-        glm::mat4 transform;
+        ourShader.Use();
         
-        //MARK: first
-        transform = glm::rotate(transform, (GLfloat)glfwGetTime() * 5.0f, glm::vec3(1.0f, 1.0f, 1.0f));
-        transform = glm::translate(transform, glm::vec3(0.0f, 0.0f, 0.0f));
-        GLuint transformLoc = glGetUniformLocation(ourShader.Program, "transform");
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-       
-        //MARK: second
-        transform = glm::mat4();
-        transform = glm::translate(transform, glm::vec3(0.0f, 0.0f, 0.0f));
-        GLfloat floatTime = sinf(glfwGetTime());
-        transform = glm::scale(transform, glm::vec3(floatTime, floatTime, floatTime));
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        //MARK: 3D model
+        
+        glm::mat4 model;
+        model = glm::rotate(model, -90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+        glm::mat4 view;
+        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -2.0f));
+        glm::mat4 projection;
+        projection = glm::perspective(-45.0f, (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 100.0f);
+        
+        GLint modelLocation = glGetUniformLocation(ourShader.Program, "model");
+        glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
+        
+        GLuint viewLocation = glGetUniformLocation(ourShader.Program, "view");
+        glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(view));
+        
+        GLuint projectionLocation = glGetUniformLocation(ourShader.Program, "projection");
+        glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
         
         //MARK: draw triangle
-//        glBindVertexArray(VAO);
-//        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         
         //MARK: swap screen buffers
