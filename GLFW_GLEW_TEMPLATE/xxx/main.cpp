@@ -16,12 +16,27 @@
 #include "glm.hpp"
 #include "matrix_transform.hpp"
 #include "type_ptr.hpp"
+#include "CameraXXX.h"
+
 
 
 //MARK: key callback declaration
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void move();
 
 const GLuint WIDTH = 800, HEIGHT = 600;
+
+//MARK: camera constants
+
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+GLfloat deltaTime = 0.0;
+GLfloat lastFrame = 0.0;
+
+GLfloat lastX = 400, lastY = 300;
+bool firstMouse = true;
+bool keys[1024];
 
 //MARK: main
 int main() {
@@ -197,7 +212,12 @@ int main() {
     //MARK: "RUNTIME LOOP"
     while (!glfwWindowShouldClose(window)) {
         //MARK: check for events
+        GLfloat currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+        
         glfwPollEvents();
+        move();
         
         //MARK: render
         glClearColor(0.2f, 0.1f, 0.3f, 1.0f);
@@ -214,11 +234,11 @@ int main() {
         ourShader.Use();
         
         //MARK: 3D model
-        
         glm::mat4 model;
-//        model = glm::rotate(model, (GLfloat)glfwGetTime() * 2.0f, glm::vec3(0.5f, 1.0f, 0.0f));
         glm::mat4 view;
-        view = glm::translate(view, glm::vec3(0, 0, -3.0f));
+        
+        view = camera.GetViewMatrix();
+        
         glm::mat4 projection;
         projection = glm::perspective(-45.0f, (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 100.0f);
         
@@ -230,7 +250,7 @@ int main() {
         
         GLuint projectionLocation = glGetUniformLocation(ourShader.Program, "projection");
         glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
-        
+
         //MARK: draw triangle
         glBindVertexArray(VAO);
         for(GLuint i = 0; i < 10; i++)
@@ -266,10 +286,54 @@ int main() {
 
 //MARK: keycallback defined
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode){
+    
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
         std::cout<< "ESC Pressed" << std::endl;
         glfwSetWindowShouldClose(window, true);
     }
+    if (key >= 0 && key < 1024)
+    {
+        if (action == GLFW_PRESS)
+            keys[key] = true;
+        else if (action == GLFW_RELEASE)
+            keys[key] = false;
+    }
+}
+
+void move(){
+    if(keys[GLFW_KEY_W])
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+    if(keys[GLFW_KEY_S])
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if(keys[GLFW_KEY_A])
+        camera.ProcessKeyboard(LEFT, deltaTime);
+    if(keys[GLFW_KEY_D])
+        camera.ProcessKeyboard(RIGHT, deltaTime);
+}
+
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if(firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+    
+    GLfloat xoffset = xpos - lastX;
+    GLfloat yoffset = lastY - ypos;  // Reversed since y-coordinates go from bottom to left
+    
+    lastX = xpos;
+    lastY = ypos;
+    
+    camera.ProcessMouseMovement(xoffset, yoffset);
+}
+
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    camera.ProcessMouseScroll(yoffset);
 }
 
 
